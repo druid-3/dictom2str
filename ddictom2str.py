@@ -9,7 +9,7 @@ import argparse
 def createParser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dir', default="./txtdir", type=str, action='store', dest='dirL', help='folders with txt files')
-    parser.add_argument('-r', '--remove', default=False, type=bool, action='store', dest='rmFl', help='input file - remove or not')
+    parser.add_argument('-r', '--remove', default=False, action="store_true", dest='rmFl', help='input file - remove or not')
     return parser
 #-------------------------------------------------------------------------------
 def findFiles(catalog, suffix):
@@ -39,11 +39,7 @@ def dictom2line(Frx, Ftx):
 #-------------------------------------------------------------------------------
 def walkAndMKD(directory):
     if os.path.isdir(directory):
-        try:
-            os.mkdir(directory.replace("/", "/d2l_"), 0755)
-        except OSError:
-            if os.path.exists(directory.replace("/", "/d2l_")): pass
-            else: raise
+        if not os.path.exists(directory.replace("/", "/d2l_")): os.mkdir(directory.replace("/", "/d2l_"))
     for name in os.listdir(directory):
         path = os.path.join(directory, name)
         if os.path.isdir(path):
