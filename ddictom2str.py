@@ -59,5 +59,5 @@ for FN in findFiles(clavname.dirL, ".txt"):
     fw.close()
     if (clavname.rmFl): os.remove(FN)
     d, f = os.path.split(FN.replace("/", "/d2l_"))
-    print (f+" naw is OK!")
+    print (f+" - now is OK!")
 
